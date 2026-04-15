@@ -1,0 +1,54 @@
+# ================= BACKEND =================
+
+backend/node_modules/
+backend/.env
+backend/.env.*
+backend/logs/
+backend/*.log
+
+# ================= FRONTEND =================
+
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+frontend/.env.*
+
+# ================= ROOT =================
+
+node_modules/
+.env
+.env.*
+
+# Logs
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ================= SYSTEM FILES =================
+
+.DS_Store
+Thumbs.db
+
+# ================= IDE =================
+
+.vscode/
+.idea/
+
+# ================= CACHE =================
+
+.cache/
+.parcel-cache/
+
+# ================= TEST / COVERAGE =================
+
+coverage/
+
+# ================= MISC =================
+
+*.pid
+*.seed
+*.pid.lock

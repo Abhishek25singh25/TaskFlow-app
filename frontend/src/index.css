@@ -1,0 +1,30 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #1a202c;
+  --muted: #718096;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --danger: #ef4444;
+  --todo: #e0e7ff;
+  --todo-text: #3730a3;
+  --progress: #fef3c7;
+  --progress-text: #92400e;
+  --done: #d1fae5;
+  --done-text: #065f46;
+  --low: #f0fdf4;
+  --low-text: #15803d;
+  --medium: #fffbeb;
+  --medium-text: #b45309;
+  --high: #fef2f2;
+  --high-text: #dc2626;
+}
+
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+button { cursor: pointer; border: none; font-family: inherit; font-size: 14px; border-radius: 8px; padding: 8px 16px; transition: all 0.15s; }
+input, textarea, select { font-family: inherit; font-size: 14px; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; width: 100%; outline: none; background: var(--surface); color: var(--text); }
+input:focus, textarea:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }

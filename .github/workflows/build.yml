@@ -1,4 +1,5 @@
 name: Build the pipeline
+
 on:
   workflow_call:
 
@@ -6,25 +7,22 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-      - name : Checkout the code
-        uses : actions/checkout@v4
+      - name: Checkout the code
+        uses: actions/checkout@v4
 
-      - name : Node setup
+      - name: Node setup
         uses: actions/setup-node@v4
         with:
-            node-version: "20"
+          node-version: "24"
 
-      - name : Install backend dependencies
+      - name: Install backend dependencies
         working-directory: ./backend
         run: npm install
 
-      - name : Install frontend dependecies
+      - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm install
 
-      - name : Frontend build
+      - name: Frontend build
         working-directory: ./frontend
         run: npm run build
-            
-    
-

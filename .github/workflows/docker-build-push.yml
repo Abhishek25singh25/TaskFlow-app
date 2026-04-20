@@ -35,7 +35,7 @@ jobs:
       - name : Backend build
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image }}:${{ github.sha }} ./backend
-          docker tag ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image }} :${{ github.sha }} ${{ secrets.DOCKER_USERNAME }} /${{ inputs.backend_image}}:${{ inputs.tag }}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image }}:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image}}:${{ inputs.tag }}
 
       - name : Backend push
         run: |
@@ -45,7 +45,7 @@ jobs:
       - name : Frontend build
         run : |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ inputs.frontend_image }}:${{ github.sha }} ./frontend
-          docker tag ${{secrets.DOCKER_USERNAME}}/${{ inputs.frontend_image }} :${{ github.sha }} ${{ secrets.DOCKER_USERNAME }} /${{ inputs.frontend_image }}:${{ inputs.tag }}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/${{ inputs.frontend_image }}:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/${{ inputs.frontend_image }}:${{ inputs.tag }}
 
       - name : Frontend push
         run: |

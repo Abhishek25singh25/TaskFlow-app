@@ -1,4 +1,4 @@
-name : Dependcy scan
+name: Dependency scan
 
 on:
   workflow_call:
@@ -6,7 +6,6 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,16 +17,16 @@ jobs:
 
       - name: Backend scan
         working-directory: ./backend
-        run : npm install
-        
-      - name : Vulnerablitity scan
+        run: npm install
+
+      - name: Vulnerability scan
         working-directory: ./backend
-        run : npm audit --audit-level=high
-        
-      - name : Frontend scan
+        run: npm audit --audit-level=high
+
+      - name: Frontend scan
         working-directory: ./frontend
         run: npm install
-      
-      - name : Vulnerablitity scan
+
+      - name: Vulnerability scan
         working-directory: ./frontend
-        run : npm audit --audit-level=high
+        run: npm audit --audit-level=high

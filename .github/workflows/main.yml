@@ -20,8 +20,9 @@ jobs:
       backend_image: taskflow-backend
       frontend_image: taskflow-frontend
       tag: latest
-    secrets: inherit
-      
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
   image-scan:
     needs: docker

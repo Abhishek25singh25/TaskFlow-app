@@ -22,6 +22,7 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest     
+
     steps:
       - name: Checkout code 
         uses: actions/checkout@v4
@@ -29,22 +30,38 @@ jobs:
       - name: Docker login
         run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+      # 🔹 Backend
       - name: Backend build
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image }}:${{ github.sha }} ./backend
-          docker tag ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image }}:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image }}:${{ inputs.tag }}
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker build -t $USERNAME/${{ inputs.backend_image }}:${{ github.sha }} ./backend
+
+      - name: Backend tag
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker tag $USERNAME/${{ inputs.backend_image }}:${{ github.sha }} $USERNAME/${{ inputs.backend_image }}:${{ inputs.tag }}
 
       - name: Backend push
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image }}:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image }}:${{ inputs.tag }}
+          docker push $USERNAME/${{ inputs.backend_image }}:${{ github.sha }}
+          docker push $USERNAME/${{ inputs.backend_image }}:${{ inputs.tag }}
 
+      # 🔹 Frontend
       - name: Frontend build
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ inputs.frontend_image }}:${{ github.sha }} ./frontend
-          docker tag ${{ secrets.DOCKER_USERNAME }}/${{ inputs.frontend_image }}:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/${{ inputs.frontend_image }}:${{ inputs.tag }}
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker build -t $USERNAME/${{ inputs.frontend_image }}:${{ github.sha }} ./frontend
+
+      - name: Frontend tag
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker tag $USERNAME/${{ inputs.frontend_image }}:${{ github.sha }} $USERNAME/${{ inputs.frontend_image }}:${{ inputs.tag }}
 
       - name: Frontend push
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ inputs.frontend_image }}:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ inputs.frontend_image }}:${{ inputs.tag }}
+          docker push $USERNAME/${{ inputs.frontend_image }}:${{ github.sha }}
+          docker push $USERNAME/${{ inputs.frontend_image }}:${{ inputs.tag }}

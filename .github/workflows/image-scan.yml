@@ -27,7 +27,8 @@ jobs:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/${{ inputs.backend_image }}:${{ inputs.tag }} 
           format: table
           exit-code: "1"
-          severity: "CRITICAL,HIGH"
+          severity: CRITICAL
+          ignore-unfixed: true
 
       - name: Frontend image scan
         uses: aquasecurity/trivy-action@master

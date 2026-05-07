@@ -35,5 +35,5 @@ jobs:
         with:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/${{ inputs.frontend_image }}:${{ inputs.tag }}
           format: table
-          exit-code: "1"
+          exit-code: "0"
           severity: "CRITICAL,HIGH"

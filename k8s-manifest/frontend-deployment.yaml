@@ -14,6 +14,10 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: abhisheksingh250703/taskflow-frontend:latest
+          image: taskflow-app-frontend:latest   
+          imagePullPolicy: IfNotPresent         
           ports:
             - containerPort: 80
+
+          
+          

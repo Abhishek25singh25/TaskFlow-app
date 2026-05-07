@@ -14,15 +14,37 @@ spec:
     spec:
       containers:
         - name: backend
-          image: abhisheksingh250703/taskflow-backend:latest
+          image: taskflow-app-backend:latest   
+          imagePullPolicy: IfNotPresent        
           ports:
             - containerPort: 5000
           envFrom:
             - configMapRef:
                 name: backend-config
           env:
-            - name: MONGO_URI
+            - name: MONGO_URI 
               valueFrom:
                 secretKeyRef:
                   name: backend-secret
                   key: MONGO_URI
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5 
+            periodSeconds: 5
+
+          resources:
+            requests:
+              cpu: 125m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi

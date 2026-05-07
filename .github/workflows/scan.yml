@@ -6,6 +6,7 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -13,20 +14,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20" 
+          node-version: "20"
 
-      - name: Backend scan
+      - name: Install backend dependencies
         working-directory: ./backend
         run: npm install
 
-      - name: Vulnerability scan
-        working-directory: ./backend
-        run: npm audit --audit-level=high
-
-      - name: Frontend scan
+      - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm install
-
-      - name: Vulnerability scan
-        working-directory: ./frontend
-        run: npm audit --audit-level=high

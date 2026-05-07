@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import TaskForm from './components/TaskForm';
 import TaskCard from './components/TaskCard';
 
-const API = '/api/tasks';
+const API = 'http://13.235.73.225:5000/api/tasks';
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
